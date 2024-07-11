@@ -7,12 +7,15 @@ FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 # Rails app lives here
 WORKDIR /rails
 
+# Declare RAILS_MASTER_KEY as an argument
+ARG RAILS_MASTER_KEY
+
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
-    RAILS_MASTER_KEY="14230907274cb48c1e28d6086424d9d0"
+    RAILS_MASTER_KEY=$RAILS_MASTER_KEY
 
 
 # Throw-away build stage to reduce size of final image
