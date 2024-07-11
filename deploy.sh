@@ -9,7 +9,7 @@ gcloud builds submit --config=./cloudbuild.yaml --substitutions=_IMAGE_TAG="${IM
 
 cd -
 cd ./backend
-gcloud builds submit --config=./cloudbuild.yaml --substitutions=_IMAGE_TAG="${IMAGE_TAG}" --substitutions=_RAILS_MASTER_KEY="${RAILS_MASTER_KEY}"
+gcloud builds submit --config=./cloudbuild.yaml --substitutions=_IMAGE_TAG="${IMAGE_TAG}",_RAILS_MASTER_KEY="${RAILS_MASTER_KEY}"
 
 cd -
 gcloud run deploy three-tier-fe \
