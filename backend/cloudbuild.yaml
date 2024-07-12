@@ -20,3 +20,4 @@ substitutions:
   _RAILS_MASTER_KEY: unset
   _TODO_DB_USER: unset
   _TODO_DB_USER_PASSWORD: unset
+  _TODO_DB_HOST: unset
