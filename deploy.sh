@@ -31,7 +31,7 @@ cd -
 cd ./backend
 gcloud builds submit \
     --config=./cloudbuild.yaml \
-    --substitutions=_IMAGE_TAG="${IMAGE_TAG}",_RAILS_MASTER_KEY="${RAILS_MASTER_KEY}",_TODO_DB_USER="${TODO_DB_USER}",_TODO_DB_USER_PASSWORD="${TODO_DB_USER_PASSWORD}"
+    --substitutions=_IMAGE_TAG="${IMAGE_TAG}",_RAILS_MASTER_KEY="${RAILS_MASTER_KEY}",_TODO_DB_USER="${TODO_DB_USER}",_TODO_DB_USER_PASSWORD="${TODO_DB_USER_PASSWORD},_TODO_DB_HOST=${TODO_DB_HOST}"
 
 cd -
 gcloud run deploy three-tier-fe \
