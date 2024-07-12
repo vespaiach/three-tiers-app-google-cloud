@@ -1,0 +1,12 @@
+# syntax = docker/dockerfile:1
+
+ARG RUBY_VERSION=3.3.3
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+WORKDIR /app
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config postgresql-client libpq-dev
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+EXPOSE 3000
+
+CMD [ "/bin/bash" ]

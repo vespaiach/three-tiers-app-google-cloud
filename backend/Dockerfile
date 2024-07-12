@@ -12,6 +12,7 @@ ARG RAILS_MASTER_KEY
 ARG TODO_DB_USER
 ARG TODO_DB_USER_PASSWORD
 ARG TODO_DB_HOST
+ARG PORT=3000
 
 # Set production environment
 ENV RAILS_ENV="production" \
@@ -21,7 +22,8 @@ ENV RAILS_ENV="production" \
     RAILS_MASTER_KEY=$RAILS_MASTER_KEY \
     TODO_DB_USER=$TODO_DB_USER \
     TODO_DB_USER_PASSWORD=$TODO_DB_USER_PASSWORD \
-    TODO_DB_HOST=$TODO_DB_HOST
+    TODO_DB_HOST=$TODO_DB_HOST \
+    PORT=$PORT
 
 
 # Throw-away build stage to reduce size of final image
@@ -63,6 +65,8 @@ COPY --from=build /rails /rails
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
+
+EXPOSE $PORT
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
