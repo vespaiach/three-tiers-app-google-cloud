@@ -9,13 +9,17 @@ WORKDIR /rails
 
 # Declare RAILS_MASTER_KEY as an argument
 ARG RAILS_MASTER_KEY
+ARG TODO_DB_USER
+ARG TODO_DB_USER_PASSWORD
 
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
-    RAILS_MASTER_KEY=$RAILS_MASTER_KEY
+    RAILS_MASTER_KEY=$RAILS_MASTER_KEY \
+    TODO_DB_USER=$TODO_DB_USER \
+    TODO_DB_USER_PASSWORD=$TODO_DB_USER_PASSWORD
 
 
 # Throw-away build stage to reduce size of final image

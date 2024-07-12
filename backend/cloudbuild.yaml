@@ -1,8 +1,20 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '--build-arg', 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY', '-t', 'gcr.io/$PROJECT_ID/three-tier-app-be:$_IMAGE_TAG', '.' ]
+  args:
+    - 'build'
+    - '--build-arg'
+    - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
+    - '--build-arg'
+    - 'TODO_DB_USER=$_TODO_DB_USER'
+    - '--build-arg'
+    - 'TODO_DB_USER_PASSWORD=$_TODO_DB_USER_PASSWORD'
+    - '-t'
+    - 'gcr.io/$PROJECT_ID/three-tier-app-be:$_IMAGE_TAG'
+    - '.'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/three-tier-app-be:$_IMAGE_TAG']
 substitutions:
   _IMAGE_TAG: latest
   _RAILS_MASTER_KEY: unset
+  _TODO_DB_USER: unset
+  _TODO_DB_USER_PASSWORD: unset
