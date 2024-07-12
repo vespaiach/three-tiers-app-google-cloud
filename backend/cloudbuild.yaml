@@ -8,6 +8,8 @@ steps:
     - 'TODO_DB_USER=$_TODO_DB_USER'
     - '--build-arg'
     - 'TODO_DB_USER_PASSWORD=$_TODO_DB_USER_PASSWORD'
+    - '--build-arg'
+    - 'TODO_DB_HOST=$_TODO_DB_HOST'
     - '-t'
     - 'gcr.io/$PROJECT_ID/three-tier-app-be:$_IMAGE_TAG'
     - '.'

@@ -11,6 +11,7 @@ WORKDIR /rails
 ARG RAILS_MASTER_KEY
 ARG TODO_DB_USER
 ARG TODO_DB_USER_PASSWORD
+ARG TODO_DB_HOST
 
 # Set production environment
 ENV RAILS_ENV="production" \
@@ -19,7 +20,8 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development" \
     RAILS_MASTER_KEY=$RAILS_MASTER_KEY \
     TODO_DB_USER=$TODO_DB_USER \
-    TODO_DB_USER_PASSWORD=$TODO_DB_USER_PASSWORD
+    TODO_DB_USER_PASSWORD=$TODO_DB_USER_PASSWORD \
+    TODO_DB_HOST=$TODO_DB_HOST
 
 
 # Throw-away build stage to reduce size of final image

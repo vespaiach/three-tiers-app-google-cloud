@@ -9,6 +9,8 @@ PROJECT_NUMBER="660837874699"
 # gcloud services enable sqladmin.googleapis.com
 # gcloud services enable run.googleapis.com
 # gcloud services enable servicenetworking-googleapis-com
+# gcloud secrets create TODO_DB_HOST --replication-policy="automatic"
+# echo -n "/cloudsql/ahhahihi:us-west1:todo-db" | gcloud secrets versions add TODO_DB_HOST --data-file=-
 # gcloud secrets create TODO_DB_USER --replication-policy="automatic"
 # echo -n "todo-db-user" | gcloud secrets versions add TODO_DB_USER --data-file=-
 # gcloud secrets create TODO_DB_USER_PASSWORD --replication-policy="automatic"
@@ -19,6 +21,8 @@ PROJECT_NUMBER="660837874699"
 RAILS_MASTER_KEY=$(gcloud secrets versions access latest --secret=RAILS_MASTER_KEY)
 TODO_DB_USER=$(gcloud secrets versions access latest --secret="TODO_DB_USER")
 TODO_DB_USER_PASSWORD=$(gcloud secrets versions access latest --secret="TODO_DB_USER_PASSWORD")
+TODO_DB_HOST=$(gcloud secrets versions access latest --secret="TODO_DB_HOST")
+
 
 cd ./frontend
 gcloud builds submit --config=./cloudbuild.yaml --substitutions=_IMAGE_TAG="${IMAGE_TAG}"
