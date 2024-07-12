@@ -5,13 +5,15 @@
 #   gem "sqlite3"
 #
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+  database: todo-db
+  pool: 10
+  username: master
+  password:
 
 development:
   <<: *default
-  database: storage/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,9 +23,6 @@ test:
   database: storage/test.sqlite3
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: todo_db
-  pool: 10
+  <<: *default
   username: <%= ENV["TODO_DB_USER"] %>
   password: <%= ENV["TODO_DB_USER_PASSWORD"] %>

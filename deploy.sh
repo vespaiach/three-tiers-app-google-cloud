@@ -5,6 +5,7 @@ PROJECT_NUMBER="660837874699"
 # gcloud config set project $PROJECT_ID
 # gcloud services enable compute.googleapis.com
 # gcloud services enable secretmanager.googleapis.com
+# gcloud services enable cloudbuild.googleapis.com
 # gcloud secrets create TODO_DB_USER --replication-policy="automatic"
 # echo -n "todo-db-user" | gcloud secrets versions add TODO_DB_USER --data-file=-
 # gcloud secrets create TODO_DB_USER_PASSWORD --replication-policy="automatic"
