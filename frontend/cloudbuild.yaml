@@ -2,7 +2,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'build'
-    - --build-arg
+    - '--build-arg'
     - 'VITE_API_BASE_URL=$_VITE_API_BASE_URL'
     - '-t'
     - 'gcr.io/$PROJECT_ID/three-tier-app-fe:$_IMAGE_TAG'
