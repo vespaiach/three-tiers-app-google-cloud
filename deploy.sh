@@ -18,14 +18,19 @@ PROJECT_NUMBER="660837874699"
 # gcloud secrets create RAILS_MASTER_KEY --replication-policy="automatic"
 # echo -n "14230907274cb48c1e28d6086424d9d0" | gcloud secrets versions add RAILS_MASTER_KEY --data-file=-
 
+# set default region
+gcloud config set run/region us-west1
+
 RAILS_MASTER_KEY=$(gcloud secrets versions access latest --secret=RAILS_MASTER_KEY)
 TODO_DB_USER=$(gcloud secrets versions access latest --secret="TODO_DB_USER")
 TODO_DB_USER_PASSWORD=$(gcloud secrets versions access latest --secret="TODO_DB_USER_PASSWORD")
 TODO_DB_HOST=$(gcloud secrets versions access latest --secret="TODO_DB_HOST")
-
+VITE_API_BASE_URL=$(gcloud run services describe three-tier-app-be --format=json | jq '.status.url')
 
 cd ./frontend
-gcloud builds submit --config=./cloudbuild.yaml --substitutions=_IMAGE_TAG="${IMAGE_TAG}"
+gcloud builds submit \
+    --config=./cloudbuild.yaml \
+    --substitutions=_IMAGE_TAG="${IMAGE_TAG}",_VITE_API_BASE_URL="${VITE_API_BASE_URL}"
 
 cd -
 cd ./backend

@@ -8,15 +8,15 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
-  host: <%= ENV.fetch('TODO_DB_HOST', 'db') %>
+  host: <%= ENV.fetch('TODO_DB_HOST', 'localhost') %>
   database: todo-db
   username: <%= ENV["TODO_DB_USER"] %>
   password: <%= ENV["TODO_DB_USER_PASSWORD"] %>
 
 development:
   <<: *default
-  username: todo_user
-  password: todo_user_root
+  username: master
+  password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

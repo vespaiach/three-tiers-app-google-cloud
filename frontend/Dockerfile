@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1.4
 
+
 # 1. For build React app
 FROM node:lts AS development
+
+ARG VITE_API_BASE_URL
 
 # Set working directory
 WORKDIR /app
@@ -16,6 +19,8 @@ COPY . /app
 
 
 FROM development AS build
+
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 
 RUN npm run build
 
