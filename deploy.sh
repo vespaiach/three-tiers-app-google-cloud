@@ -3,6 +3,11 @@ PROJECT_ID="ahhahihi"
 PROJECT_NUMBER="660837874699"
 REGION="us-west1"
 
+# gcloud services enable \
+#   artifactregistry.googleapis.com \
+#   cloudbuild.googleapis.com \
+#   run.googleapis.com
+
 # gcloud config set project $PROJECT_ID
 # gcloud services enable compute.googleapis.com
 # gcloud services enable secretmanager.googleapis.com
@@ -44,8 +49,6 @@ gcloud builds submit \
 cd -
 gcloud run deploy three-tier-fe \
     --image=gcr.io/${PROJECT_ID}/three-tier-app-fe:${IMAGE_TAG} \
-    --allow-unauthenticated \
-    --port=80 \
     --service-account=${PROJECT_NUMBER}-compute@developer.gserviceaccount.com \
     --region=${REGION} \
     --project=$PROJECT_ID \
@@ -54,8 +57,6 @@ gcloud run deploy three-tier-fe \
 cd -
 gcloud run deploy three-tier-be \
     --image=gcr.io/${PROJECT_ID}/three-tier-app-be:${IMAGE_TAG} \
-    --allow-unauthenticated \
-    --port=80 \
     --service-account=${PROJECT_NUMBER}-compute@developer.gserviceaccount.com \
     --region=${REGION} \
     --project=$PROJECT_ID \
@@ -63,3 +64,14 @@ gcloud run deploy three-tier-be \
 
 # gcloud run services update-traffic three-tier-be --to-revisions revision-name
 # gcloud run services update-traffic three-tier-fe --to-revisions revision-name
+# gcloud run deploy three-tier-app-be \
+# --image=gcr.io/ahhahihi/three-tier-app-be@sha256:a6e937a8e3397e9ce18cf9ffa748ba8ef1588f59690e2e1a510322e6c789da72 \
+# --set-cloudsql-instances=ahhahihi:us-west1:todo-db \
+# --region=us-west1 \
+# --project=ahhahihi
+
+# gcloud run deploy three-tier-app-fe \
+# --image=gcr.io/ahhahihi/three-tier-app-fe@sha256:ce017e408f790b45550a8b016881eb3cca066107f552b76c23c8b9aa25b9544f \
+# --region=us-west1 \
+# --project=ahhahihi \
+#  && gcloud run services update-traffic three-tier-app-fe --to-latest
