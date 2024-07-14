@@ -58,6 +58,7 @@ cd -
 gcloud run deploy three-tier-be \
     --image=gcr.io/${PROJECT_ID}/three-tier-app-be:${IMAGE_TAG} \
     --service-account=${PROJECT_NUMBER}-compute@developer.gserviceaccount.com \
+    --set-cloudsql-instances=ahhahihi:us-west1:todo-db \
     --region=${REGION} \
     --project=$PROJECT_ID \
     --no-traffic

@@ -68,7 +68,4 @@ USER rails:rails
 
 EXPOSE $PORT
 
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
 CMD ["./bin/rails", "server"]
